@@ -1,0 +1,10 @@
+run,Population size,Generations,Starting frequency of A1
+500ind_10Kgen_0p5AF,500,10000,0.5
+10Kind_10Kgen_0p5AF,10000,10000,0.5
+Infinind_10Kgen_0p5AF,infinity,10000,0.5
+500ind_10Kgen_0p1AF,500,10000,0.1
+10Kind_10Kgen_0p1AF,10000,10000,0.1
+Infinind_10Kgen_0p1AF,infinity,10000,0.1
+500ind_10Kgen_0p9AF,500,10000,0.9
+10Kind_10Kgen_0p9AF,10000,10000,0.9
+Infinind_10Kgen_0p9AF,infinity,10000,0.9

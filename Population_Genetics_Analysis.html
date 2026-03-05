@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Population Genetics Simulation Analysis</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 40px;
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    h2 {
+      font-size: 17px;
+      background-color: #2c5f8a;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 4px;
+      margin-top: 36px;
+    }
+    h3 {
+      font-size: 15px;
+      color: #2c5f8a;
+      border-left: 4px solid #2c5f8a;
+      padding-left: 10px;
+      margin-top: 24px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: 16px 0;
+    }
+    th {
+      background-color: #2c5f8a;
+      color: white;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    tr:nth-child(even) td {
+      background-color: #f4f7fb;
+    }
+    .callout {
+      background-color: #eef4fb;
+      border-left: 5px solid #2c5f8a;
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 14px;
+    }
+    .formula {
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px 16px;
+      font-family: "Courier New", monospace;
+      font-size: 14px;
+      margin: 12px 0;
+      text-align: center;
+    }
+    .answer-box {
+      background-color: #fff8e1;
+      border: 1px solid #f0c040;
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    p { font-size: 14px; margin: 10px 0; }
+    ul { font-size: 14px; margin: 8px 0; }
+    li { margin-bottom: 5px; }
+    .page-break { page-break-before: always; }
+    @media print {
+      body { margin: 20px; padding: 0 20px; }
+      h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Population Genetics Simulation — Analysis Report</h1>
+  <div class="subtitle">
+    BME 105: Genetics in the Genomics Era &nbsp;|&nbsp; Discussion Section 8 &nbsp;|&nbsp; March 4, 2026<br>
+    Tool: HHMI BioInteractive Population Genetics Explorer (Individual Simulations)
+  </div>
+
+  <!-- ───────────────────────── OVERVIEW ───────────────────────── -->
+  <h2>Overview &amp; Simulation Conditions</h2>
+  <p>
+    Nine simulations were run under neutral conditions (no selection, mutation, migration,
+    inbreeding, or assortative mating) to isolate the effects of population size and starting
+    allele frequency on allele frequency change over 10,000 generations.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Simulation Name</th>
+        <th>Population Size (N)</th>
+        <th>Generations</th>
+        <th>Starting Freq A1 (p₀)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>500ind_10Kgen_0p5AF</td><td>500</td><td>10,000</td><td>0.5</td></tr>
+      <tr><td>10Kind_10Kgen_0p5AF</td><td>10,000</td><td>10,000</td><td>0.5</td></tr>
+      <tr><td>Infinind_10Kgen_0p5AF</td><td>Infinite</td><td>10,000</td><td>0.5</td></tr>
+      <tr><td>500ind_10Kgen_0p1AF</td><td>500</td><td>10,000</td><td>0.1</td></tr>
+      <tr><td>10Kind_10Kgen_0p1AF</td><td>10,000</td><td>10,000</td><td>0.1</td></tr>
+      <tr><td>Infinind_10Kgen_0p1AF</td><td>Infinite</td><td>10,000</td><td>0.1</td></tr>
+      <tr><td>500ind_10Kgen_0p9AF</td><td>500</td><td>10,000</td><td>0.9</td></tr>
+      <tr><td>10Kind_10Kgen_0p9AF</td><td>10,000</td><td>10,000</td><td>0.9</td></tr>
+      <tr><td>Infinind_10Kgen_0p9AF</td><td>Infinite</td><td>10,000</td><td>0.9</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ───────────────────────── SIMULATION RESULTS ───────────────────────── -->
+  <h2>Simulation Results</h2>
+
+  <h3>Group 1 — Starting Frequency p = 0.5</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Simulation</th>
+        <th>A1 Allele Trajectory</th>
+        <th>Final Outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>500ind_10Kgen_0p5AF</td>
+        <td>Fluctuates 0.4–0.7 in first ~1k generations, then crashes to 0 by gen ~2,000</td>
+        <td><strong>A2 fixed</strong> — A1 eliminated by drift</td>
+      </tr>
+      <tr>
+        <td>10Kind_10Kgen_0p5AF</td>
+        <td>Oscillates 0.3–0.7 across all 10,000 generations; no fixation reached</td>
+        <td><strong>Still polymorphic</strong> — drift too slow to fix either allele</td>
+      </tr>
+      <tr>
+        <td>Infinind_10Kgen_0p5AF</td>
+        <td>Perfectly flat line at exactly 0.5 for all 10,000 generations</td>
+        <td><strong>No change</strong> — Hardy-Weinberg equilibrium maintained (A1A1=0.25, A1A2=0.50, A2A2=0.25)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Group 2 — Starting Frequency p = 0.1</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Simulation</th>
+        <th>A1 Allele Trajectory</th>
+        <th>Final Outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>500ind_10Kgen_0p1AF</td>
+        <td>Starts at 0.1, drifts UP to ~0.9 by gen ~1,000 (by chance), then crashes to 0 by gen ~2,000</td>
+        <td><strong>A2 fixed</strong> — rare allele briefly surged before loss; demonstrates bidirectional drift</td>
+      </tr>
+      <tr>
+        <td>10Kind_10Kgen_0p1AF</td>
+        <td>Stays near 0.1 for ~1,000 gen, then drops to 0</td>
+        <td><strong>A2 fixed</strong> — rare allele lost, but more slowly than N=500</td>
+      </tr>
+      <tr>
+        <td>Infinind_10Kgen_0p1AF</td>
+        <td>Perfectly flat line at exactly 0.1 for all 10,000 generations</td>
+        <td><strong>No change</strong> — HWE maintained (A1A1=0.01, A1A2=0.18, A2A2=0.81)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Group 3 — Starting Frequency p = 0.9</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Simulation</th>
+        <th>A1 Allele Trajectory</th>
+        <th>Final Outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>500ind_10Kgen_0p9AF</td>
+        <td>Starts at 0.9, reaches 1.0 by gen ~300–500</td>
+        <td><strong>A1 fixed</strong> — rapid fixation; high starting frequency + strong drift = fast outcome</td>
+      </tr>
+      <tr>
+        <td>10Kind_10Kgen_0p9AF</td>
+        <td>Oscillates 0.75–1.0 throughout 10k gen, trending toward fixation near end (~0.95–1.0)</td>
+        <td><strong>Near fixation</strong> — slow drift, not fully fixed after 10k generations</td>
+      </tr>
+      <tr>
+        <td>Infinind_10Kgen_0p9AF</td>
+        <td>Perfectly flat line at exactly 0.9 for all 10,000 generations</td>
+        <td><strong>No change</strong> — HWE maintained (A1A1=0.81, A1A2=0.18, A2A2=0.01)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ───────────────────────── DISCUSSION QUESTIONS ───────────────────────── -->
+  <div class="page-break"></div>
+  <h2>Discussion Questions &amp; Answers</h2>
+
+  <!-- Q1 -->
+  <h3>Q1: Why is the impact of genetic drift strongest in small, compared to large populations?</h3>
+
+  <p>
+    Genetic drift is the random change in allele frequency due to chance variation in which
+    individuals reproduce in each generation. In small populations, each offspring represents
+    a larger fraction of the total gene pool, so random sampling errors have a proportionally
+    greater effect on allele frequencies.
+  </p>
+
+  <div class="formula">Var(Δp) = p(1 − p) / 2N</div>
+
+  <p>
+    This formula shows that the variance in allele frequency change per generation is inversely
+    proportional to population size (N). As N decreases, variance increases — meaning larger
+    random fluctuations occur each generation.
+  </p>
+
+  <div class="callout">
+    <strong>Evidence from simulations:</strong>
+    <ul>
+      <li><strong>N=500, p=0.5:</strong> A1 was completely lost by generation ~2,000 — strong drift eliminated the allele in less than 20% of the total time span.</li>
+      <li><strong>N=10,000, p=0.5:</strong> A1 fluctuated between 0.3–0.7 across the full 10,000 generations without ever reaching fixation or loss — drift was too weak to cause fixation.</li>
+      <li><strong>N=500, p=0.1:</strong> A1 randomly surged from 0.1 to ~0.9 within ~1,000 generations, then crashed to 0 — a dramatic demonstration of large random swings possible in small populations.</li>
+    </ul>
+  </div>
+
+  <div class="answer-box">
+    <strong>Answer:</strong> Genetic drift is strongest in small populations because random sampling
+    errors represent a larger proportion of the total gene pool each generation. With fewer
+    individuals, a chance event (e.g., one allele not being passed on) has an outsized effect
+    on overall allele frequency. In large populations, these random errors cancel out across
+    thousands of individuals, producing minimal net change per generation.
+  </div>
+
+  <!-- Q2 -->
+  <h3>Q2: Why do allele frequencies become uniform when population size is set to infinite?</h3>
+
+  <p>
+    Genetic drift is fundamentally a sampling phenomenon — it arises because a finite number
+    of individuals reproduce each generation and alleles are randomly sampled. When population
+    size is infinite, sampling error mathematically approaches zero.
+  </p>
+
+  <div class="formula">Var(Δp) = p(1 − p) / 2N → 0 as N → ∞</div>
+
+  <p>
+    With no variance in allele frequency change, allele frequencies cannot change from one
+    generation to the next. This is the idealized condition described by the
+    Hardy-Weinberg principle: in an infinitely large, randomly mating population with no
+    evolutionary forces, allele and genotype frequencies remain constant indefinitely.
+  </p>
+
+  <div class="callout">
+    <strong>Evidence from simulations:</strong>
+    <ul>
+      <li><strong>Infinind, p=0.5:</strong> Perfectly flat line at 0.5 for all 10,000 generations. Genotypes: A1A1=0.25, A1A2=0.50, A2A2=0.25 (exactly p² = 0.25, 2pq = 0.50, q² = 0.25).</li>
+      <li><strong>Infinind, p=0.1:</strong> Perfectly flat line at 0.1. Genotypes: A1A1=0.01, A1A2=0.18, A2A2=0.81.</li>
+      <li><strong>Infinind, p=0.9:</strong> Perfectly flat line at 0.9. Genotypes: A1A1=0.81, A1A2=0.18, A2A2=0.01.</li>
+      <li>In all three infinite cases, both allele and genotype frequency graphs were completely flat horizontal lines — no variation whatsoever across 10,000 generations.</li>
+    </ul>
+  </div>
+
+  <div class="answer-box">
+    <strong>Answer:</strong> With an infinite population size, every possible allele is transmitted
+    in exact proportion each generation because there is no sampling error. Genetic drift, which
+    requires a finite sample, cannot occur. Allele frequencies therefore remain perfectly stable
+    ("uniform") across all generations, exactly matching their starting values and satisfying
+    Hardy-Weinberg equilibrium.
+  </div>
+
+  <!-- Q3 -->
+  <h3>Q3: When no evolution is occurring and genetic drift is minimal, what factor has the largest impact on the average final allele frequency of A1?</h3>
+
+  <p>
+    When drift is minimized (large or infinite N) and no evolutionary forces act (neutrality),
+    the expected final allele frequency always equals the starting frequency. This is because
+    drift is an <em>unbiased</em> process — it has no directional preference. On average across
+    many replicate populations, the mean final frequency equals p₀ regardless of the number
+    of generations.
+  </p>
+
+  <div class="callout">
+    <strong>Evidence from simulations (N=∞ and N=10,000):</strong>
+    <table style="margin-top:8px;">
+      <thead>
+        <tr>
+          <th>Simulation</th>
+          <th>Starting Freq (p₀)</th>
+          <th>Approx. Final Freq</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Infinind_0p1AF</td><td>0.1</td><td>0.1 (unchanged)</td></tr>
+        <tr><td>Infinind_0p5AF</td><td>0.5</td><td>0.5 (unchanged)</td></tr>
+        <tr><td>Infinind_0p9AF</td><td>0.9</td><td>0.9 (unchanged)</td></tr>
+        <tr><td>10Kind_0p1AF</td><td>0.1</td><td>~0 (lost — started low, drift caused loss)</td></tr>
+        <tr><td>10Kind_0p5AF</td><td>0.5</td><td>~0.5–0.6 (near starting freq)</td></tr>
+        <tr><td>10Kind_0p9AF</td><td>0.9</td><td>~0.95–1.0 (near starting freq)</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:8px;">
+      Note: The N=10,000 p=0.1 result (loss) is consistent with the starting frequency — a
+      rare allele (p=0.1) has only a 10% probability of fixation and a 90% probability of
+      loss under neutrality, matching the expected outcome.
+    </p>
+  </div>
+
+  <div class="answer-box">
+    <strong>Answer:</strong> The <strong>starting allele frequency (p₀)</strong> has the largest
+    impact on the average final allele frequency of A1. When drift is minimal and no evolutionary
+    forces act, expected final frequency = p₀. The starting frequency also determines the
+    probability of fixation under drift (probability of fixation = p₀), explaining why alleles
+    starting at high frequency (p=0.9) are far more likely to become fixed than alleles starting
+    at low frequency (p=0.1).
+  </div>
+
+  <!-- ───────────────────────── SUMMARY ───────────────────────── -->
+  <h2>Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Effect on A1 Allele Frequency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Small population size (N=500)</td>
+        <td>Strong drift — rapid fixation or loss, large random fluctuations, outcomes within ~2k generations</td>
+      </tr>
+      <tr>
+        <td>Large population size (N=10,000)</td>
+        <td>Weak drift — slow, small fluctuations; polymorphism maintained much longer</td>
+      </tr>
+      <tr>
+        <td>Infinite population size</td>
+        <td>No drift — allele frequencies remain perfectly constant; Hardy-Weinberg equilibrium holds</td>
+      </tr>
+      <tr>
+        <td>Starting frequency (p₀ = 0.1)</td>
+        <td>Low probability of fixation; allele likely to be lost to drift in finite populations</td>
+      </tr>
+      <tr>
+        <td>Starting frequency (p₀ = 0.5)</td>
+        <td>Equal probability of fixation or loss; average final frequency ≈ 0.5</td>
+      </tr>
+      <tr>
+        <td>Starting frequency (p₀ = 0.9)</td>
+        <td>High probability of fixation; allele likely to fix rapidly in small populations</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:30px; font-size:12px; color:#888; text-align:center;">
+    BME 105 — Discussion Section 8 &nbsp;|&nbsp; Population Genetics Simulation &nbsp;|&nbsp;
+    HHMI BioInteractive Population Genetics Explorer
+  </p>
+
+</body>
+</html>
